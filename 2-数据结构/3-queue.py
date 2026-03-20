@@ -87,6 +87,47 @@ class LinkedQueue:
         return "Queue(front -> " + " -> ".join(result) + ")"
 
 """循环队列"""
+# 解决假溢出问题
+class CircularQueue:
+    def __init__(self,capacity):
+        self.capacity = capacity
+        self.queue = [None] * capacity
+        self.front = 0 # 队头指针
+        self.back = 0 # 队尾指针
+        self.count = 0 # 当前元素数量,这样就不用牺牲掉一个数据存储单
+
+    def is_full(self):
+        return self.count == self.capacity
+
+    def is_empty(self):
+        return self.count == 0
+
+    def enqueue(self,value):
+        if self.is_full():
+            raise IndexError('Queue is full')
+        self.queue[self.back] = value
+        self.back = (self.back + 1) % self.capacity
+        self.count += 1
+
+    def dequeue(self):
+        if self.is_empty():
+            raise IndexError('Queue is empty')
+        data = self.queue[self.front]
+        self.front = (self.front + 1) % self.capacity
+        self.count -= 1
+        return data
+
+    def size(self):
+        return self.count
+
+    def __str__(self):
+        if self.is_empty():
+            raise IndexError('Queue is empty')
+        result = []
+        for i in range(self.count):
+            index = (self.front + i) % self.capacity
+            result.append(str(self.queue[index]))
+        return "CircularQueue(front -> " + " -> ".join(result) + ")"
 
 if __name__ == '__main__':
     q = Queue()
