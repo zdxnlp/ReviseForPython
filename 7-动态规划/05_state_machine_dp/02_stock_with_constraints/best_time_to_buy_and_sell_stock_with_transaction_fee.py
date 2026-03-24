@@ -1,0 +1,22 @@
+def max_profit_with_fee(prices: list[int], fee: int) -> int:
+    if not prices:
+        return 0
+
+    # Step 1: 定义状态
+    dp = [[0, 0] for _ in range(len(prices))]
+
+    # Step 2: 初始化
+    dp[0][0] = 0
+    dp[0][1] = -prices[0]
+
+    # Step 3: 状态转移
+    for i in range(1, len(prices)):
+        dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] + prices[i] - fee)
+        dp[i][1] = max(dp[i - 1][1], dp[i - 1][0] - prices[i])
+
+    # Step 4: 返回答案
+    return dp[-1][0]
+
+
+if __name__ == "__main__":
+    print(max_profit_with_fee([1, 3, 2, 8, 4, 9], 2))
