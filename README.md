@@ -1,2 +1,7 @@
-# ReviseForPython
-Python复习
+# 实习秋招复习
+1. Python
+2. 机器学习
+3. 深度学习
+4. 强化学习
+5. LeetCode刷题
+6. 各大厂的上机笔试

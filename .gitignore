@@ -10,7 +10,7 @@ ENV/
 env.bak/
 venv.bak/
 
-# 分发/打包
+# 分发 / 打包
 build/
 develop-eggs/
 dist/
